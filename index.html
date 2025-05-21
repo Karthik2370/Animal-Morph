@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Animal Morph 7 Triangles</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Animal Morph</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Animal Morph: Fish, Turtle & Butterfly</h1>
-  <select id="animalSelect" onchange="changeAnimal()">
-    <option value="fish">🐟 Fish</option>
-    <option value="turtle">🐢 Turtle</option>
-    <option value="butterfly">🦋 Butterfly</option>
-  </select>
+  <div class="ui">
+    <h1>Animal Morph</h1>
+    <select id="animalSelect" onchange="changeAnimal()">
+      <option value="">-- Select an animal --</option>
+      <option value="fish">🐟 Fish</option>
+      <option value="turtle">🐢 Turtle</option>
+      <option value="butterfly">🦋 Butterfly</option>
+    </select>
+  </div>
 
   <div id="container">
     <div class="triangle" id="tri1"></div>

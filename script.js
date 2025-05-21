@@ -20,28 +20,71 @@ const animals = {
   ],
 
   butterfly: [
-    { points: '40% 30%, 20% 10%, 25% 40%', color: '#F48FB1' },  // left upper wing top
-    { points: '40% 30%, 30% 60%, 25% 40%', color: '#F06292' },  // left upper wing bottom
-    { points: '60% 30%, 80% 10%, 75% 40%', color: '#CE93D8' },  // right upper wing top
-    { points: '60% 30%, 70% 60%, 75% 40%', color: '#BA68C8' },  // right upper wing bottom
-    { points: '45% 40%, 55% 40%, 50% 60%', color: '#9C27B0' },  // body top
-    { points: '45% 60%, 55% 60%, 50% 80%', color: '#6A1B9A' },  // body bottom
-    { points: '48% 15%, 52% 15%, 50% 10%', color: '#7B1FA2' }   // antennae
+    { points: '40% 30%, 20% 10%, 25% 40%', color: '#F48FB1' },
+    { points: '40% 30%, 30% 60%, 25% 40%', color: '#F06292' },
+    { points: '60% 30%, 80% 10%, 75% 40%', color: '#CE93D8' },
+    { points: '60% 30%, 70% 60%, 75% 40%', color: '#BA68C8' },
+    { points: '45% 40%, 55% 40%, 50% 60%', color: '#9C27B0' },
+    { points: '45% 60%, 55% 60%, 50% 80%', color: '#6A1B9A' },
+    { points: '48% 15%, 52% 15%, 50% 10%', color: '#7B1FA2' }
   ]
 };
 
-function changeAnimal() {
-  const selected = document.getElementById('animalSelect').value;
-  const shape = animals[selected];
+const container = document.getElementById('container');
+const triangles = [];
+for (let i = 1; i <= 7; i++) {
+  triangles.push(document.getElementById(`tri${i}`));
+}
 
-  shape.forEach((tri, i) => {
-    const el = document.getElementById(`tri${i + 1}`);
-    el.style.webkitClipPath = `polygon(${tri.points})`;
-    el.style.clipPath = `polygon(${tri.points})`;
-    el.style.backgroundColor = tri.color;
+// Position scattered triangles around center
+function scatterTriangles() {
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+
+  triangles.forEach(tri => {
+    const left = Math.random() * (vw - 300);
+    const top = Math.random() * (vh - 300);
+    const rotate = (Math.random() * 90 - 45).toFixed(2) + 'deg';
+    const scale = (Math.random() + 0.5).toFixed(2);
+
+    const r = Math.floor(Math.random() * 156 + 100);
+    const g = Math.floor(Math.random() * 156 + 100);
+    const b = Math.floor(Math.random() * 156 + 100);
+    const color = `rgb(${r},${g},${b})`;
+
+    tri.style.left = left + 'px';
+    tri.style.top = top + 'px';
+    tri.style.transform = `rotate(${rotate}) scale(${scale})`;
+    tri.style.backgroundColor = color;
+    tri.style.clipPath = 'polygon(40% 40%, 50% 60%, 60% 40%)';
+    tri.style.webkitClipPath = 'polygon(40% 40%, 50% 60%, 60% 40%)';
   });
 }
 
+// Morph into selected animal
+function morphTriangles(shape) {
+  const dropdownHeight = document.querySelector('.ui').offsetHeight + 20;
+  shape.forEach((tri, i) => {
+    const el = triangles[i];
+    el.style.left = `calc(50% - 150px)`;
+    el.style.top = `calc(${dropdownHeight}px + 20vh)`;
+    el.style.transform = 'none';
+    el.style.backgroundColor = tri.color;
+    el.style.clipPath = `polygon(${tri.points})`;
+    el.style.webkitClipPath = `polygon(${tri.points})`;
+  });
+}
+
+
+function changeAnimal() {
+  const selected = document.getElementById('animalSelect').value;
+  if (!selected) {
+    scatterTriangles();
+  } else {
+    morphTriangles(animals[selected]);
+  }
+}
+
 window.onload = () => {
-  changeAnimal();
+  scatterTriangles();
 };

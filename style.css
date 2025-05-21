@@ -1,23 +1,41 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
   background: #111;
   color: white;
   font-family: Arial, sans-serif;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   user-select: none;
 }
 
+.ui {
+  position: fixed;
+  top: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  margin-bottom: 20px;
+  z-index: 10;
+  user-select: none;
+}
+
+
 h1 {
-  margin: 1rem 0;
+  margin-bottom: 1rem;
 }
 
 select {
-  margin-bottom: 2rem;
-  font-size: 18px;
+  font-size: 16px;
   padding: 8px 12px;
   border-radius: 6px;
   border: none;
@@ -27,17 +45,24 @@ select {
 }
 
 #container {
-  position: relative;
-  width: 300px;
-  height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .triangle {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 300px;
   opacity: 0.95;
-  transition: all 1s ease-in-out;
+  transition:
+    clip-path 1s ease-in-out,
+    background-color 1s ease-in-out,
+    transform 1s ease-in-out,
+    left 1s ease-in-out,
+    top 1s ease-in-out;
   -webkit-clip-path: polygon(40% 40%, 50% 60%, 60% 40%);
   clip-path: polygon(40% 40%, 50% 60%, 60% 40%);
 }
