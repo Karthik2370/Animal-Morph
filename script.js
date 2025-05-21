@@ -80,14 +80,26 @@ function scatterTriangles() {
 // Morph triangles into selected animal shape
 function morphTriangles(shape) {
   const dropdownHeight = document.querySelector('.ui').offsetHeight + 20;
-  const centerX = window.innerWidth / 2 - Math.min(150, window.innerWidth * 0.1);
-  const centerY = dropdownHeight + window.innerHeight * 0.2;
+  const isMobile = window.innerWidth <= 600;
+  
+  // Adjust center position based on screen size
+  const centerX = isMobile 
+    ? window.innerWidth / 2 - (window.innerWidth * 0.15)
+    : window.innerWidth / 2 - Math.min(150, window.innerWidth * 0.1);
+    
+  const centerY = isMobile
+    ? dropdownHeight + window.innerHeight * 0.35
+    : dropdownHeight + window.innerHeight * 0.2;
+
+  // Scale factor for mobile
+  const scale = isMobile ? 1.5 : 1;
 
   triangles.forEach((el, i) => {
     const tri = shape[i] || { points: '40% 40%, 50% 60%, 60% 40%', color: '#333' };
     el.style.left = `${centerX}px`;
     el.style.top = `${centerY}px`;
-    el.style.transform = 'scale(1)';
+    el.style.transform = `scale(${scale})`;
+    el.style.setProperty('--mobile-scale', scale);
     el.style.background = tri.color;
     el.style.clipPath = `polygon(${tri.points})`;
     el.style.webkitClipPath = `polygon(${tri.points})`;
@@ -99,11 +111,16 @@ function morphTriangles(shape) {
 
 // Trigger animations for selected animal
 function triggerAnimation(shape) {
+  const isMobile = window.innerWidth <= 600;
+  const scale = isMobile ? 1.5 : 1;
+
   triangles.forEach((el, i) => {
     const tri = shape[i] || {};
     el.classList.remove('animated-trex', 'animated-trex-scales', 'animated-fish', 'animated-turtle', 'animated-butterfly');
     if (tri.animated) {
       el.classList.add(`animated-${tri.animated}`);
+      // Maintain the scale while animating
+      el.style.transform = `scale(${scale})`;
     }
   });
   isAnimated = true;
