@@ -41,45 +41,6 @@ The user can select an animal from a dropdown, and the scattered triangles smoot
 
 ---
 
-## Why This Approach?
-
-- Using CSS polygons for clip-path means each shape is defined with three points (triangle) which is the simplest polygon allowing complex morphing by adjusting just 3 coordinates per shape.
-- Keeping transitions purely in CSS avoids heavy JavaScript animations or SVG path manipulations.
-- The project is highly compatible with WebKit-based browsers (Chrome, Safari, most mobiles), making it widely usable.
-- The visual effect feels dynamic and artistic while being lightweight and performant.
-
----
-
-## How to Run
-
-1. Open `index.html` in a modern browser (Chrome, Safari recommended).
-2. Use the dropdown to select an animal.
-3. Watch the triangles morph smoothly from scattered shards to the chosen animal shape.
-4. Select the blank option to reset the triangles to scattered mode.
-
----
-
-## File Structure
-
-- `index.html` — UI layout including dropdown and triangle containers.
-- `style.css` — Styling for body, dropdown, triangles, and transitions.
-- `script.js` — Logic for scattering and morphing triangles based on selection.
-
----
-
-## Browser Support
-
-- Best support on WebKit browsers (Chrome, Safari, Edge).
-- Firefox supports `clip-path` but via SVG reference, so the morphing logic here is optimized for WebKit only.
-
----
-
 ## Credits
 
-Inspired by the creative use of CSS clip-path polygons and transitions to create morphing shapes. Special thanks to all open-source tutorials on clip-path and CSS animation techniques.
-
----
-
-Enjoy morphing animals with just CSS & JS!
-
-
+Inspired by [Species in Pieces](http://www.species-in-pieces.com/), a website that brilliantly exploits CSS clip-path polygons to create morphing animal shapes. The creator of that website provided invaluable insights and techniques that inspired this project and demonstrated how powerful and beautiful CSS polygon morphing can be.
