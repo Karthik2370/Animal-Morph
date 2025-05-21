@@ -9,12 +9,16 @@
 <body>
   <div class="ui">
     <h1>Animal Morph</h1>
-    <select id="animalSelect" onchange="changeAnimal()">
-      <option value="">-- Select an animal --</option>
-      <option value="fish">🐟 Fish</option>
-      <option value="turtle">🐢 Turtle</option>
-      <option value="butterfly">🦋 Butterfly</option>
-    </select>
+    <div class="controls">
+      <button class="radial-toggle">Select Animal</button>
+      <div class="radial-menu">
+        <button class="radial-item" data-animal="">Reset</button>
+        <button class="radial-item" data-animal="fish">🐟</button>
+        <button class="radial-item" data-animal="turtle">🐢</button>
+        <button class="radial-item" data-animal="butterfly">🦋</button>
+        <button class="radial-item" data-animal="trex">🦖</button>
+      </div>
+    </div>
   </div>
 
   <div id="container">
