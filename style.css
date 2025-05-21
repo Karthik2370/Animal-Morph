@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  user-select: none;
+}
+
+h1 {
+  margin: 1rem 0;
+}
+
+select {
+  margin-bottom: 2rem;
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: #222;
+  color: white;
+  cursor: pointer;
+}
+
+#container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.triangle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.95;
+  transition: all 1s ease-in-out;
+  -webkit-clip-path: polygon(40% 40%, 50% 60%, 60% 40%);
+  clip-path: polygon(40% 40%, 50% 60%, 60% 40%);
+}
